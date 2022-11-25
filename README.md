@@ -9,12 +9,12 @@ php bin/console make:migration : Préparer la migration de la base
 php bin/console doctrine:migrations:migrate : Effectuer la migration 
 
 
-# Route de l'api : 
+# Routes de l'api : 
 
 GET ALL (GET): /products/  
 GET By ID (GET): /products/{id}  
 CREATE (POST): /products/create  
-EDIT (PUT): /products/{id}/edit.  
+EDIT (PUT): /products/update/{id}/.  
 DELETE (POST):  /products/{id}  
 
-UpdateStock (PUT) : /products/{id}/stock?add=1 || /products/{id}/stock?remove=1
+UpdateStock (PUT) : /products/stock/{id}/?add=1 || /products/stock/{id}/?remove=1
