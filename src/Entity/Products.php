@@ -22,6 +22,7 @@ class Products
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $stocks = null;
 
     public function getId(): ?int

@@ -3,13 +3,14 @@
 {% block title %}Products index{% endblock %}
 
 {% block body %}
-    <h1>Products index</h1>
-
+    <div class="container">
+    <h1 class="text-center mb-5 mt-3">Gestion des stocks alimentaires</h1>
+        <a href="{{ path('app_products_new') }}" class="float-end btn btn-success">Nouveau produit</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Stocks</th>
                 <th>actions</th>
             </tr>
@@ -21,17 +22,18 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.stocks }}</td>
                 <td>
-                    <a href="{{ path('app_products_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_products_edit', {'id': product.id}) }}">edit</a>
+                    <a href="{{ path('app_products_show', {'id': product.id}) }}" class="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_products_edit', {'id': product.id}) }}" class="btn btn-info">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun produit trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_products_new') }}">Create new</a>
+
+</div>
 {% endblock %}

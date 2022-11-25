@@ -1,4 +1,13 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="invalid-feedback">
+    {{ form_errors(form) }}
+</div>
+<div class="mb-5">
+    <div class="form-label">{{ form_label(form.name) }}</div>
+    <div>{{ form_widget(form.name) }}</div>
+    <div class="form-label">{{ form_label(form.stocks) }}</div>
+    <div>{{ form_widget(form.stocks) }}</div>
+</div>
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+</div>
 {{ form_end(form) }}
