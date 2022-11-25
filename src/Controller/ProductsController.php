@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use function PHPUnit\Framework\returnArgument;
 
 #[Route('/products')]
 class ProductsController extends AbstractController
@@ -104,12 +105,16 @@ class ProductsController extends AbstractController
     public function createProduct(ValidatorInterface $validator, Request $request): Response
     {
         $product = new Products();
-        $product->setName($request->get('name'));
-        $product->setStocks($request->get('stocks'));
+        $name = $request->get('name');
+        $stock = $request->get('stocks');
+        if(empty($name)) return $this->json("Enter a name");
+        if(empty($stock)) return $this->json("Enter amount of stocks");
+        $product->setName($name);
+        $product->setStocks($stock);
 
         $errors = $validator->validate($product);
         if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+            return $this->json($errors[0], Response::HTTP_BAD_REQUEST);
         }
 
         $this->em->persist($product);
@@ -145,7 +150,7 @@ class ProductsController extends AbstractController
 
         $errors = $validator->validate($product);
         if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+            return $this->json($errors[0], Response::HTTP_BAD_REQUEST);
         }
 
         $this->em->flush();
@@ -198,7 +203,7 @@ class ProductsController extends AbstractController
 
         $errors = $validator->validate($product);
         if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+            return $this->json($errors[0], Response::HTTP_BAD_REQUEST);
         }
 
         $this->em->flush();

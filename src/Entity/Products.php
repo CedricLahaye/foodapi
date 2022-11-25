@@ -19,10 +19,12 @@ class Products
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Assert\Regex('#^[a-zA-Z]#')]
     private ?string $name = null;
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\Type('integer')]
     private ?int $stocks = null;
 
     public function getId(): ?int
