@@ -13,6 +13,6 @@ php bin/console doctrine:migrations:migrate : Effectuer la migration
 
 GET ALL (GET): /products/  
 GET By ID (GET): /products/{id}  
-CREATE (POST): /products/create
-EDIT (PUT): /products/{id}/edit
+CREATE (POST): /products/create.  
+EDIT (PUT): /products/{id}/edit.  
 DELETE (POST):  /products/{id}  
