@@ -133,7 +133,7 @@ class ProductsController extends AbstractController
         return $this->json("This product does not exists", Response::HTTP_NOT_FOUND);
     }
 
-    #[Route('/{id}/edit', name: 'app_products_edit', methods: ['PUT'])]
+    #[Route('/update/{id}', name: 'app_products_edit', methods: ['PUT'])]
     public function modifyProduct(Request $request, int $id, ValidatorInterface $validator): Response
     {
         $product = $this->em->getRepository(Products::class)->find($id);
@@ -144,9 +144,12 @@ class ProductsController extends AbstractController
         if(!$product instanceof Products){
             throw new \LogicException('Old product not found');
         }
+        $name = $request->get('name');
+        $stock = $request->get('stocks');
 
-        $product->setName($request->get('name'));
-        $product->setStocks($request->get('stocks'));
+        if(!empty($name)) $product->setName($request->get('name'));
+        if(!empty($stock)) $product->setStocks($request->get('stocks'));
+
 
         $errors = $validator->validate($product);
         if (count($errors) > 0) {
@@ -178,7 +181,7 @@ class ProductsController extends AbstractController
         return $this->json('Deleted product '. $id . ' successfully', Response::HTTP_OK);
     }
 
-    #[Route('/{id}/stock', name: 'app_products_changestock', methods: ['PUT'])]
+    #[Route('/stock/{id}', name: 'app_products_changestock', methods: ['PUT'])]
     public function changeStock(Request $request, int $id, ValidatorInterface $validator): Response
     {
         $product = $this->em->getRepository(Products::class)->find($id);
