@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/products')]
 class ProductsController extends AbstractController
 {
+    //Get All products
     #[Route('/', name: 'app_products_index', methods: ['GET'])]
     public function index(ProductsRepository $productsRepository): Response
     {
@@ -20,7 +21,7 @@ class ProductsController extends AbstractController
             'products' => $productsRepository->findAll(),
         ]);
     }
-
+    //Create a Product
     #[Route('/create', name: 'app_products_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProductsRepository $productsRepository): Response
     {
@@ -39,7 +40,7 @@ class ProductsController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    //Get Product by ID
     #[Route('/{id}', name: 'app_products_show', methods: ['GET'])]
     public function show(Products $product): Response
     {
@@ -48,6 +49,7 @@ class ProductsController extends AbstractController
         ]);
     }
 
+    //Edit a Product By ID
     #[Route('/{id}/edit', name: 'app_products_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Products $product, ProductsRepository $productsRepository): Response
     {
@@ -66,6 +68,7 @@ class ProductsController extends AbstractController
         ]);
     }
 
+    //Delete a Product By ID
     #[Route('/{id}', name: 'app_products_delete', methods: ['POST'])]
     public function delete(Request $request, Products $product, ProductsRepository $productsRepository): Response
     {
