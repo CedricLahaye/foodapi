@@ -17,8 +17,7 @@ class Products
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Regex('#^[a-zA-Z]#')]
     private ?string $name = null;
 
@@ -26,6 +25,9 @@ class Products
     #[Assert\NotBlank]
     #[Assert\Type('integer')]
     private ?int $stocks = null;
+
+    #[ORM\Column(length: 13)]
+    private ?string $barcode = null;
 
     public function getId(): ?int
     {
@@ -52,6 +54,18 @@ class Products
     public function setStocks(int $stocks): self
     {
         $this->stocks = $stocks;
+
+        return $this;
+    }
+
+    public function getBarcode(): ?string
+    {
+        return $this->barcode;
+    }
+
+    public function setBarcode(string $barcode): self
+    {
+        $this->barcode = $barcode;
 
         return $this;
     }

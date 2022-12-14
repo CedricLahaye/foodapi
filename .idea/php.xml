@@ -131,6 +131,13 @@
       <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/twig/twig" />
       <path value="$PROJECT_DIR$/vendor/symfony/asset" />
+      <path value="$PROJECT_DIR$/vendor/webonyx/graphql-php" />
+      <path value="$PROJECT_DIR$/vendor/overblog/graphql-bundle" />
+      <path value="$PROJECT_DIR$/vendor/murtukov/php-code-generator" />
+      <path value="$PROJECT_DIR$/vendor/overblog/graphiql-bundle" />
+      <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use function PHPUnit\Framework\returnArgument;
 
 #[Route('/products')]
@@ -91,6 +93,7 @@ class ProductsController extends AbstractController
         $this->em = $em;
     }
 
+
     /**
      * @param ProductsRepository $productsRepository
      * @Route("/", name="api_products", methods={"GET"})
@@ -107,10 +110,12 @@ class ProductsController extends AbstractController
         $product = new Products();
         $name = $request->get('name');
         $stock = $request->get('stocks');
-        if(empty($name)) return $this->json("Enter a name");
+        $barcode = $request->get('barcode');
+        if(!empty($name)) $product->setName($name);
         if(empty($stock)) return $this->json("Enter amount of stocks");
-        $product->setName($name);
+
         $product->setStocks($stock);
+        $product->setBarcode($barcode);
 
         $errors = $validator->validate($product);
         if (count($errors) > 0) {

@@ -1,0 +1,23 @@
+type Products {
+    id: ID!
+    name: String!
+    stocks: Int!
+    barcode: String!
+}
+
+input CreateProducts {
+    name: String!
+    stocks: Int!
+    barcode: String!
+}
+
+input UpdateProducts {
+    name: String!
+    stocks: Int!
+    barcode: String!
+}
+
+input DeleteProducts {
+    id : ID!
+    barcode: String!
+}
