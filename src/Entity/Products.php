@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
-#[UniqueEntity('name')]
+#[UniqueEntity('barcode')]
 class Products
 {
     #[ORM\Id]
@@ -27,6 +27,7 @@ class Products
     private ?int $stocks = null;
 
     #[ORM\Column(length: 13)]
+    #[Assert\Length(min: 13, max: 13, minMessage: 'The barcode must be 13 characters long', maxMessage: 'The barcode must be 13 characters long')]
     private ?string $barcode = null;
 
     public function getId(): ?int

@@ -32,6 +32,7 @@ class CustomResolverMap extends ResolverMap
                     return match ($info->fieldName) {
                         'productById' => $this->queryService->findProductById((int)$args['id']),
                         'productByBarcode' => $this->queryService->findProductByBarcode($args['barcode']),
+                        'productByName' => $this->queryService->findProductByName($args['name']),
                         default => null
                     };
                 },

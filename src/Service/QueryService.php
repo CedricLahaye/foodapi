@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Products;
 use App\Repository\ProductsRepository;
 use Doctrine\Common\Collections\Collection;
+use GraphQL\Error\Error;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
@@ -21,11 +22,24 @@ class QueryService
     {
 
         $product = $this->productsRepository->find($productId);
+        if (is_null($product)) {
+            throw new Error("Could not find product for specified Id");
+        }
         return $this->GetNameFromApi($product);
     }
     public function findProductByBarcode(string $productBarCode): ?Products{
         $product = $this->productsRepository->findOneBy(['barcode' => $productBarCode]);
+        if (is_null($product)) {
+            throw new Error("Could not find product for specified Barcode");
+        }
         return $this->GetNameFromApi($product);
+    }
+    public function findProductByName(string $name): ?Products{
+        $product =  $this->productsRepository->findOneBy(['name' => $name]);
+        if (is_null($product)) {
+            throw new Error("Could not find product for specified Name");
+        }
+        return $product;
     }
 
     /**

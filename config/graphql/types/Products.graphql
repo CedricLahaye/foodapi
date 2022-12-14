@@ -6,7 +6,7 @@ type Products {
 }
 
 input CreateProducts {
-    name: String!
+    name: String
     stocks: Int!
     barcode: String!
 }

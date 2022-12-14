@@ -1,4 +1,5 @@
 type RootQuery {
     productById(id: ID!): Products
     productByBarcode(barcode: String!): Products
+    productByName(name: String!): Products
 }
