@@ -69,4 +69,29 @@ class MutationService
 
         return $product;
     }
+
+    public function deleteProductById(int $id): string{
+        $product = $this->manager->getRepository(Products::class)->find($id);
+
+        if(!$product){
+            throw new Error("Could not find product for specified Id");
+        }
+
+        $this->manager->remove($product);
+        $this->manager->flush();
+
+        return "Product with ID ".$id." successfully deleted";
+    }
+    public function deleteProductByBarcode(string $barcode): string{
+        $product = $this->manager->getRepository(Products::class)->findOneBy(['barcode' => $barcode]);
+
+        if(!$product){
+            throw new Error("Could not find product for specified Id");
+        }
+
+        $this->manager->remove($product);
+        $this->manager->flush();
+
+        return "Product with Barcode ".$barcode." successfully deleted";
+    }
 }

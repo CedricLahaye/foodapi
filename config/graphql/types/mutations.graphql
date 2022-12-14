@@ -2,6 +2,6 @@ type RootMutation {
     createProduct(product: CreateProducts!): Products!
     updateProductById(id: ID!, product: UpdateProducts!): Products!
     updateProductByBarcode(barcode: String!, product: UpdateProducts): Products!
-    deleteProductById(id: ID!): Products!
-    deleteProductByBarcode(barcode: String!): Products!
+    deleteProductById(id: ID!): String
+    deleteProductByBarcode(barcode: String!): String
 }

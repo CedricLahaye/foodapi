@@ -47,6 +47,8 @@ class CustomResolverMap extends ResolverMap
                         'createProduct' => $this->mutationService->createProduct($args['product']),
                         'updateProductById' => $this->mutationService->updateProductById((int)$args['id'], $args['product']),
                         'updateProductByBarcode' => $this->mutationService->updateProductByBarcode($args['barcode'], $args['product']),
+                        'deleteProductById' => $this->mutationService->deleteProductById((int)$args['id']),
+                        'deleteProductByBarcode' => $this->mutationService->deleteProductByBarcode($args['barcode']),
                         default => null
                     };
                 },
