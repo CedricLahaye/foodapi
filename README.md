@@ -63,7 +63,7 @@ query product {
 ### Get by Barcode
 ````
 query product {
-  productByName(barcode: "0123456789123") {
+  productByBarcode(barcode: "0123456789123") {
     name,
     stocks,
     barcode
