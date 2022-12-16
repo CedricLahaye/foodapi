@@ -39,7 +39,7 @@ class QueryService
         if (is_null($product)) {
             throw new Error("Could not find product for specified Name");
         }
-        return $product;
+        return $this->GetNameFromApi($product);
     }
 
     /**
@@ -63,7 +63,9 @@ class QueryService
             $content = $response->getContent();
             $content = $response->toArray();
             $name = $content['products'][0]['product_name'];
+            $barcode = $content['products'][0]['code'];
             $product->setName($name);
+            $product->setBarcode($barcode);
         }
         return $product;
     }

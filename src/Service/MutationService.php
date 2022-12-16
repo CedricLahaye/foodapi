@@ -23,6 +23,11 @@ class MutationService
         $product->setStocks($productDetails['stocks']);
         $product->setBarcode($productDetails['barcode']);
 
+        if(strlen($productDetails['barcode']) != 13) throw new Error("Barcode must be 13 characters long");
+
+        $CheckExisting = $this->manager->getRepository(Products::class)->findOneBy(['barcode' => $product->getBarcode()]);
+        if($CheckExisting != null) throw new Error("This product already exists");
+
         $this->manager->persist($product);
         $this->manager->flush();
 
@@ -41,8 +46,15 @@ class MutationService
             $product->setName($productDetails['name']);
         }
 
+
         $product->setStocks($productDetails['stocks']);
         $product->setBarcode($productDetails['barcode']);
+
+        if(strlen($productDetails['barcode']) != 13) throw new Error("Barcode must be 13 characters long");
+
+
+        $CheckExisting = $this->manager->getRepository(Products::class)->findBy(['barcode' => $product->getBarcode()]);
+        if(count($CheckExisting) > 1) throw new Error("This product already exists");
 
         $this->manager->persist($product);
         $this->manager->flush();
@@ -63,6 +75,11 @@ class MutationService
 
         $product->setStocks($productDetails['stocks']);
         $product->setBarcode($productDetails['barcode']);
+
+        if(strlen($productDetails['barcode']) != 13) throw new Error("Barcode must be 13 characters long");
+
+        $CheckExisting = $this->manager->getRepository(Products::class)->findBy(['barcode' => $product->getBarcode()]);
+        if(count($CheckExisting) > 1) throw new Error("This product already exists");
 
         $this->manager->persist($product);
         $this->manager->flush();
